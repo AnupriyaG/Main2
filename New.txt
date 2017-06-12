@@ -1,0 +1,211 @@
+PYTHON
+-named after the BBC show “Monty Python’s Flying Circus”
+-very-high-level language
+-interpreted language (no compilation)
+-indentation instead of brackets
+-no declarations 
+-extensible (can link the Python interpreter into an application written in C)
+
+NUMBERS
+/	Division with float result
+//	Division without fractional part
+%	Returs remainder
+
+STRINGS
+-s[:i] + s[i:] is always equal to s
+-strings are immutable. Assigning to an indexed position in the string results in an TypeError
+-Attempting to use an index that is too large will result in an IndexError
+-print(r'C:\some\name')  # note the r before the quote (Raw String disables most escape sequence processing)
+-Strings with multiple lines """...""" or '''...'''
+-len() returns length of string
+-String literals that are part of a single expression and have only whitespace between them will be implicitly converted to a single string literal. That is, ("spam " "eggs") == "spam eggs"
+
+LISTS
+-Lists can contain items of different types
+-lists are a mutable type
+-possible to nest lists (create lists containing other lists)
+
+STATEMENTS
+-pass is a null operation. When it is executed, nothing happens. It is useful as a placeholder when a statement is required syntactically, but no code needs to be executed.
+-raise_stmt ::=  "raise" [expression ["from" expression]]
+If no expressions are present, raise re-raises the last exception that was active in the current scope. If no exception is active in the current scope, a RuntimeError exception is raised indicating that this is an error.
+
+DATA STRUCTURES
+1) Sequence Types — list, tuple, range		(indexed by a range of numbers)
+2) Mapping Types — dict						(indexed by keys)
+
+LIST
+-can contain any type of variable
+-can contain as many variables
+-sequential access
+-Lists are mutable
+-can be used as Stack and Queue
+-appends and pops from the end of list are fast
+-inserts or pops from the beginning of a list is slow (because all of the other elements have to be shifted by one)[use dequeue for this]
+-output is , seperated and in []
+-to print output without [] >>> print(', '.join(fruits))
+-EG. a = [-1, 1, 66.25, 333, 333, 1234.5]
+
+LIST COMPREHENSIONS
+-List Comprehensions creates a new list based on another list, in a single, readable line
+-EG. squares = [x**2 for x in range(10)]
+
+NESTED LIST COMPREHENSIONS
+-EG.[[row[i] for row in matrix] for i in range(4)]
+
+TUPLES
+-sequential access
+-Tuples are immutable
+-EG. a = (-1, 1, 66.25, 333, 333, 1234.5)
+-The statement t = 12345, 54321, 'hello!' is an example of tuple packing: the values 12345, 54321 and 'hello!' are packed together in a tuple. The reverse operation is also possible: >>> x, y, z = t
+-t=tuple(integer_list)..........typecast list to tuple
+
+SETS
+-Unordered collection with no duplicate elements.
+-support mathematical operations like union, intersection, difference, and symmetric difference.
+-doesn't support indexing
+-set() used to create empty sets
+-EG. basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'} 	>>> print(basket)		{'orange', 'banana', 'pear', 'apple'}
+
+SET COMPREHENSIONS
+-EG. a = {x for x in 'abracadabra' if x not in 'abc'}	>>> print(a)		{'r', 'd'}
+
+DICTIONARIES
+-unordered set of key: value pairs,  with the requirement that the keys are unique (within one dictionary)
+-indexed by keys, which can be any immutable type; strings and numbers can always be keys.
+-Tuples can be used as keys if they contain only strings, numbers, or tuples; if a tuple contains any mutable object either directly or indirectly, it cannot be used as a key.
+-You can’t use lists as keys, since lists can be modified in place using index assignments, slice assignments, or methods like append() and extend()
+-pair of braces creates an empty dictionary: {}
+-list(d.keys()) on a dictionary returns a list of all the keys
+-sorted(d.keys()) on a dictionary returns a sorted list of all the keys
+-'guido' in tel...To check whether a single key is in the dictionary
+d.keys() will return a dictionary view object
+-EG.
+>>> tel = {'jack': 4098, 'sape': 4139}
+>>> tel['guido'] = 4127
+-When the keys are simple strings, it is sometimes easier to specify pairs using keyword arguments
+>>> dict(sape=4139, guido=4127, jack=4098)
+{'sape': 4139, 'jack': 4098, 'guido': 4127}
+
+LOOPING TECHNIQUES
+-When looping through dictionaries, the key and corresponding value can be retrieved at the same time using the items()
+>>> knights = {'gallahad': 'the pure', 'robin': 'the brave'}
+>>> for k, v in knights.items():
+...     print(k, v)
+...
+gallahad the pure
+robin the brave
+
+-When looping through a sequence, the position index and corresponding value can be retrieved at the same time using the enumerate()
+>>> for i, v in enumerate(['tic', 'tac', 'toe']):
+...     print(i, v)
+...
+0 tic
+1 tac
+2 toe
+
+-To loop over two or more sequences at the same time, the entries can be paired with the zip()
+>>> questions = ['name', 'quest', 'favorite color']
+>>> answers = ['lancelot', 'the holy grail', 'blue']
+>>> for q, a in zip(questions, answers):
+...     print('What is your {0}?  It is {1}.'.format(q, a))
+...
+What is your name?  It is lancelot.
+What is your quest?  It is the holy grail.
+What is your favorite color?  It is blue.
+
+-To loop over a sequence in reverse, first specify the sequence in a forward direction and then call the reversed() 
+>>> for i in reversed(range(1, 10, 2)):
+...     print(i)
+...
+9
+7
+5
+3
+1
+
+-To loop over a sequence in sorted order, use the sorted() function which returns a new sorted list while leaving the source unaltered
+>>> basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']
+>>> for f in sorted(set(basket)):
+...     print(f)
+...
+apple
+banana
+orange
+pear
+
+
+
+MODULES
+-Input for the interpreter and running it with that file as input instead. This is known as creating a script.
+-Python has a way to put definitions in a file and use them in a script or in an interactive instance of the interpreter. Such a file is called a module.
+-definitions from a module can be imported into other modules or into the main module (the collection of variables that you have access to in a script executed at the top level and in calculator mode)
+-A module is a file containing Python definitions and statements. 
+-The file name is the module name with the suffix .py appended.
+-The module’s name (as a string) is available as the value of the global variable __name__
+-
+	>>>import fibo
+	>>> fibo.fib(1000)
+	1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
+	>>> fibo.fib2(100)
+	[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+	>>> fibo.__name__
+	'fibo'
+
+	>>> fib = fibo.fib
+	>>> fib(500)
+	1 1 2 3 5 8 13 21 34 55 89 144 233 377
+	
+	>>> from fibo import fib, fib2
+	>>> fib(500)
+	1 1 2 3 5 8 13 21 34 55 89 144 233 377
+
+-For efficiency reasons, each module is only imported once per interpreter session. Therefore, if you change your modules, you must restart the interpreter – or, if it’s just one module you want to test interactively, use importlib.reload(), e.g. import importlib; importlib.reload(modulename).
+
+-When a module named spam is imported, the interpreter first searches for a built-in module with that name. If not found, it then searches for a file named spam.py in a list of directories given by the variable sys.path. sys.path is initialized from these locations:
+	•The directory containing the input script (or the current directory when no file is specified).
+	•PYTHONPATH (a list of directory names, with the same syntax as the shell variable PATH).
+	•The installation-dependent default.
+
+
+	
+INPUT AND OUTPUT
+-Python converts any value to a string: pass it to the repr() or str() functions.
+-str() function is meant to return representations of values which are fairly human-readable, while repr() is meant to generate representations which can be read by the interpreter
+-For objects which don’t have a particular representation for human consumption, str() will return the same value as repr(). 
+-Many values, such as numbers or structures like lists and dictionaries, have the same representation using either function.
+
+-str.rjust() method of string objects, which right-justifies a string in a field of a given width by padding it with spaces on the left.
+-There are similar methods str.ljust() and str.center(). 
+-These methods do not write anything, they just return a new string. 
+-If the input string is too long, they don’t truncate it, but return it unchanged; this will mess up your column lay-out but that’s usually better than the alternative, which would be lying about a value. 
+-If you really want truncation you can always add a slice operation, as in x.ljust(n)[:n].
+ 
+-str.zfill() pads a numeric string on the left with zeros. It understands about plus and minus signs
+
+-The brackets and characters within them (called format fields) are replaced with the objects passed into the str.format() method. A number in the brackets can be used to refer to the position of the object passed into the str.format() method.
+	>>> print('We are the {} who say "{}!"'.format('knights', 'Ni'))
+	We are the knights who say "Ni!"
+	>>> print('{1} and {0}'.format('spam', 'eggs'))
+	eggs and spam
+-If keyword arguments are used in the str.format() method, their values are referred to by using the name of the argument.
+	>>> print('This {food} is {adjective}.'.format(
+	...       food='spam', adjective='absolutely horrible'))
+	This spam is absolutely horrible.
+-Positional and keyword arguments can be arbitrarily combined:
+	>>> print('The story of {0}, {1}, and {other}.'.format('Bill', 'Manfred',
+                                                       other='Georg'))
+	The story of Bill, Manfred, and Georg.
+
+-
+
+
+
+
+
+
+
+
+
+
+
