@@ -1,0 +1,13 @@
+REGEX
+
+SED
+-Stream EDitor
+-sed options file_name
+-Existing file will never change
+-Removing the verbose output (-n)
+-Dollar($) means last line
+-Selection(&), & is what is selected by pattern
+
+
+
+kill -1

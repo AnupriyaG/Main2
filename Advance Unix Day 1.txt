@@ -1,0 +1,78 @@
+CTRL D - End of File
+
+AWK (Aho Weinberger Kernighan)
+1) One liner
+2) Script.awk
+
+-AWK will read only (not modify and update the existing file)
+-AWK is interpreter
+-Space is a default delimiter
+-Serial processing of record
+-Phase#1
+$0=1 ACAD 200
+$1=1
+$2=ACAD
+$3=200
+NF=3
+NR=2
+
+Phase#2
+BL
+
+awk '/pattern/ { action; }'
+
+-awk '/CAD/ {print $0;}'
+-$0 is a default variable to print
+-Pattern has to be in between forward slash /pattern/
+-Semicolon is a command seperator. Next command would execute in new line.
+-Variable don't needs declaration
+-We can create new fields in BL/Actions
+-" " will not work like shell scripts. It will not translate.
+-To get last field use $NF
+-To use delimiter with awk
+awk -F delimiter 'pattern { action }' file
+-To use with awk file
+awk -f program-name file-name
+awk -f awkcmd.awk emp.lst
+- AWK Life cycle
+1) BEGIN Block
+2)Open file
+3)Read records
+4)Phase #1
+5)Phase #2
+6)EOF? (If no, goto 4)
+7) END Block
+
+- NEW AWK Life cycle
+1) BEGIN Block
+2)File Open
+3)File Open Block
+4)Main Processing Block
+5)File Close 
+6)File Closer Block (If File remaining goto 2)
+7)END Block
+
+- Contains operator (~)
+
+-stdin used to take input from user
+-NR is a global variable so it will not reset.
+-
+
+-VARIABLE
+NR - Number of lines read
+FS - Input field separator
+OFS - Output field separator
+NF - Number of fields in current line
+FILENAME - Current input file
+ARGC - Number of arguments in cmd line
+ARGV - List of arguments
+RS - Record separator
+ORS - Output record separator
+OFMT - Numeric output format
+$1=$1 - Reitirate/Rebuild the phase
+
+
+-OPTIONS
+Delimiter(-F)
+Awk File(-f) - Work with multiple files
+Variable(-v)
