@@ -1,0 +1,163 @@
+TRGP02
+0Km7ofKN
+
+136.53.46.33
+22
+SSH
+
+
+-History is saved in .history
+-default shell is "Bash Shell"
+-to get in C Shell use "csh"
+-history -r (History in reverse order, require to be in cshell)
+-set prompt='% '
+
+% history
+     1 2017-05-26 10:09:02 set prompt='% '
+     2 2017-05-26 10:09:54 history
+
+% history -r
+     3 2017-05-26 10:09:58 history -r
+     2 2017-05-26 10:09:54 history
+     1 2017-05-26 10:09:02 set prompt='% '
+	 
+% history -r -h
+history -r -h
+history -r
+history
+set prompt='% '
+
+% !3
+history -r
+     5 2017-05-26 10:11:23 history -r
+     4 2017-05-26 10:10:41 history -r -h
+     2 2017-05-26 10:09:54 history
+     1 2017-05-26 10:09:02 set prompt='% '
+	 
+% !c			..... (It will execute last command starting with c)
+% !c:p			..... (It print last command starting with c)
+
+-varaibles with CAPS are environment variable, variable without caps are shell variables
+
+% set history=1000 ......(It will remember 1000 commands)
+
+- To do assignment set command is used
+
+% set prompt='\! %' ..........(will show event number before %)
+11 %
+
+-!! will execute last command.
+
+-ALAIS is a name given to command. It exist in current shell session only.
+
+23 %alias dir 'ls -ld'
+24 %dir
+drwxr-x--- 36 TRGP02 TRGP02 20480 May 26 10:39 .
+
+29 %alias dir
+ls -ld
+
+
+!* 1 through last word of current command
+!^ 1 of current command
+
+-enable auto completion....(set filec)
+-disable auto completion....(unset filec)
+
+-to save 20 command in history..........(set savehist=20)
+
+
+-Astrick is a meta character (*)
+-To avoid overwrite on any file.............(%set noclobber)
+41 %ls > f5
+f5: File exists.
+42 %ls >! f5	...............(! used to bypass safety mechanism)
+
+-43 %ls >> nsm
+nsm: No such file or directory.
+44 %ls >>! nsm
+
+-Passing all parameters of previous command (!*)
+
+52 %ls f1 f4 f6
+f1  f4  f6
+53 %alias cx 'ls !l:*' ......(passing all params except command of previous ls)
+alias cx 'ls f1 f4 f6'
+54 %cx
+f1  f4  f6
+
+-
+%ls f1 f2 f3
+f1 f2 f3
+%alias cx 'cat !ls:1-$'				.....(hard coded value)
+alias cx 'cat f1 f2 f3'
+%ls f5 f6 f7
+%alias cx 'cat \!ls:1-$'			.....(\ escapse ! and make it work dynamically)
+alias cx 'cat !ls:1-$'
+alias cx 'cat f5 f6 f7'
+%ls f8 f9 f10
+%cx
+f8 f9 f10
+
+-
+%ls f1 f2 f3
+%alias disp 'cat !!:2'				.....(hard coded value)
+alias disp 'cat f2'					
+%alias disp 'cat \!\!:2'			.....(\ escapse ! and make it work dynamically)
+alias disp 'cat !!:2'
+
+-Error Logging
+-& redirects std_err to std_out
+% ( cat nofileexist > output_log ) > err_log		......(Both output stream)
+% ( cat nofileexist >& output_log ) > err_log		......(Either output or error it willgo to output_log and err_log would be empty)
+% ( cat nofileexist > output_log ) >& err_log		......(output stream would be going to output_log and error in err_log)
+
+70 %ls nofileexists | tr 'o' 'O'
+ls: cannot access nofileexists: No such file or directory
+71 %ls nofileexists |& tr 'o' 'O'
+ls: cannOt access nOfileexists: NO such file Or directOry
+
+% echo $SHELL		....(global variable)
+/bin/bash
+% echo $shell		....(local variable)
+/bin/tcsh
+
+
+-To check last result use "$status" or "$?"
+
+-
+while ()
+	_______
+end
+
+- 
+foreach name (*)
+	________
+end
+
+-test -e ...existance test
+	  -f ...file existance test
+	  -d ...directory existance test
+	  -z ...file is zero byte test
+	  
+- Accepting single stream vs set of strings 
+set counter=1
+set a=" "
+echo "1: Enter a set of words:"
+set a=$<;
+echo "What a contains: "
+echo $a
+echo "2: Enter a set of words:"
+set a=($<)
+echo "What a contains: "
+
+while ($counter <= $#a)
+        echo $a[$counter]
+        @ counter++
+end
+
+foreach x ($a)
+        echo "foreach loop: $x"
+end
+	  
+

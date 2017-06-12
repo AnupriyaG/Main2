@@ -1,0 +1,141 @@
+
+Ways to create object in java:
+1) new
+2) Cloning
+3) Reflection
+4) Factory method
+
+Inheritance is used to specialize the things(from generalization to specialization)
+Multi Threading
+Multi Processing/Multi Programming
+Multi Tasking(Process based, Thread based)
+Context switching: Changing of address space
+Thread can be created by 2 ways, 1) extending Thread class, 2) Implementing Runnable; which is better?
+Thread: Part of process; All threads share same address space; Context switching doesn't happen; that's y thread are light weight
+start() creates new stack(resulting new thread) with public void run() as a base method
+Every thread has its own stack.
+If main thread dies before child thread, resulting child thread to be zombie thread and memory leak may occur, as garbage collector thread being Daemon thread will die after main dies. To prevent this use ensure main thread is the last thread by using setDaemon(true).
+Sequence of execution is random.
+Y to implement runnable?
+In parallel process use Stateless class to increase performace
+Avoid syncronixed methods, and start using syncronixed blox.
+
+
+JDBC is implemented via class in java.sql package.
+DriverManager -> Connection -> Statement -> ResultSet
+JDBC is full of factory methods.
+Statement, PreparedStatement
+SQLInjection can be avoided using PreparedStatement.
+con.setAutoCommit(false);//Ensures auto commit after every transaction is disabled; and has to be manually Committed.
+con.commit();
+con.rollback();
+
+CallableStatement cst = con.prepareCall("call MyAccProc()");
+ResultSet rs = st.executeQuery(selectQuery);
+
+Query is single statement/execution; Transaction consist of multiple queries.
+
+If you want object to survive beyond JVM, serialization is used.
+Or to transfer 1 object to 1 JVM to other, serialization is used.
+
+Transiant is used when you need to hide/prevent a field or object getting serialized.
+
+Super class doen't make difference while serialization.
+If super class is serializated, its all sub class is serializated.
+
+If serializated class is having refenrece of other class, it will not get serializated untill that reference object is made Transiant.
+
+
+Collections:
+Collections is a framework. Provides ready made API, Algorithms(used in data structures),
+
+			 Iterable
+			   
+			Collection(Individual elements)				Map (Key-Value Pair)
+
+	List	Set		Queue								
+
+
+
+In Map, Key part is Set and Value part is List.
+
+
+Reflection:
+-Intraspection of existing class.
+
+Remote Method Invocation (RMI)
+1) Write Server program
+2) Compile everything
+3) Compile the ServerImpl with RMIC
+4) Start rmiregistry
+5) Run AddServer
+6) Once the server object is bind -> Run client proxy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
