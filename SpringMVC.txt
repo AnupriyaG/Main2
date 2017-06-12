@@ -1,0 +1,4 @@
+View <- Model <-> Controller -> View
+FASAD(Java)/Front controller(Web)
+REST(Representational State Protocol) - Based on HTTP
+
